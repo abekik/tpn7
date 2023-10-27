@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'nombre_del_contenedor' // Personaliza el nombre de la imagen
-        DOCKER_IMAGE_TAG = "${BUILD_NUMBER}" // Utiliza el número de compilación como etiqueta
+        DOCKER_IMAGE_NAME = 'tpn7' 
+        DOCKER_IMAGE_TAG = "1.0" 
     }
 
     stages {
