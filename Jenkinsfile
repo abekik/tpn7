@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     // Iniciar sesión en Docker Hub
-                    sh "docker login -u \${DOCKERHUB_USERNAME}"
+                    sh "docker login -u \$DOCKERHUB_CREDENTIALS"
 
                     // Etiquetar la imagen con el nombre de usuario/organización en Docker Hub
                     sh "docker tag \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG} \${DOCKERHUB_USERNAME}/\${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
