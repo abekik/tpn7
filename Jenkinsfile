@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Construir la imagen Docker
+                  
                     sh "docker build -t \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG} ."
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Ejecutar el contenedor Docker
+                
                     sh "docker run -d --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
                 }
             }
