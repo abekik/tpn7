@@ -31,7 +31,19 @@ pipeline {
             }
         }
     }
+    
+      stage('Test Docker Container') {
+    steps {
+        script {
+ 
 
+            // Verificar la respuesta del servidor web
+            sh "curl -I http://192.168.56.10:9090/index.html"
+        }
+    }
+}
+
+    
     post {
         success {
             echo 'Imagen Docker construida y contenedor en ejecución exitosamente.'
