@@ -1,18 +1,16 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE_NAME = 'tpn7' 
-        DOCKER_IMAGE_TAG = "1.0" 
-    }
-
     stages {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh """
-                        docker build -t \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG} .
-                    """
+                    // Definir el nombre y la etiqueta de la imagen
+                    def imageName = 'nombre_de_tu_imagen'
+                    def imageTag = 'etiqueta_de_tu_imagen'
+
+                    // Construir la imagen Docker
+                    sh "docker build -t ${imageName}:${imageTag} ."
                 }
             }
         }
