@@ -9,31 +9,31 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Verificación') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build de la imagen') {
             steps {
                 script {
-                    // Construir la imagen Docker
+                   
                     sh "docker build -t \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG} ."
                 }
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Ejecución del contenedor') {
             steps {
                 script {
-                    // Ejecutar el contenedor Docker
+                   
                     sh "docker run -d -p 9090:80 --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
                 }
             }
         }
 
-        stage('Test Docker Container') {
+        stage('Pruebas de contenedor') {
             steps {
                 script {
 
@@ -43,10 +43,11 @@ pipeline {
             }
         }
     
-        stage('Push Docker Image to Docker Hub') {
+        stage('Pushear a Dockerhub') {
             steps {
                 script {
                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    sh 'docker push abekik/tpn7'
                 }
             }
         }
