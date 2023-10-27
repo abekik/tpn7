@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
 
-                    sh "curl -I http://192.168.56.10:9090/\${INDEX_FILE}"
+                    sh "lynx 192.168.56.10:9090"
                 }
             }
         }
