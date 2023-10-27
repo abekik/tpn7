@@ -36,7 +36,8 @@ pipeline {
             steps {
                 script {
 
-                    sh "lynx 192.168.56.10:9090"
+                    sh "cat /var/www/html/index.html"
+                    sh "curl -I http://192.168.56.10:9090/index.html"
                 }
             }
         }
