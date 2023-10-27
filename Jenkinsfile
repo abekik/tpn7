@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                 
-                    sh "docker run -d --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
+                    sh "docker run -d -p 8080:80 --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
                 }
             }
         }
