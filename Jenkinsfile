@@ -57,6 +57,8 @@ pipeline {
             }
         }
 
+    }
+
     post {
         success {
             echo 'Imagen Docker construida, contenedor en ejecución y prueba de acceso a la página web exitosa.'
