@@ -46,14 +46,7 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    // Iniciar sesión en Docker Hub
-                    sh "docker login -u \$DOCKERHUB_CREDENTIALS"
-
-                    // Etiquetar la imagen con el nombre de usuario/organización en Docker Hub
-                    sh "docker tag \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG} \${DOCKERHUB_USERNAME}/\${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
-
-                    // Cargar (push) la imagen a Docker Hub
-                    sh "docker push \${DOCKERHUB_USERNAME}/\${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 }
             }
         }
@@ -66,6 +59,7 @@ pipeline {
         }
         failure {
             error 'Error al construir la imagen Docker, ejecutar el contenedor o realizar la prueba de acceso a la página web.'
+    
         }
     }
 }
