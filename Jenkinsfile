@@ -31,7 +31,17 @@ pipeline {
             }
         }
     }
+stage('Test Docker Container') {
+            steps {
+                script {
+                    // Copiar el archivo index al contenedor
+                    sh "lynx 192.168.56.10:9090"
 
+
+                }
+            }
+        }
+    }
     post {
         success {
             echo 'Imagen Docker construida y contenedor en ejecución exitosamente.'
