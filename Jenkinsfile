@@ -43,6 +43,23 @@ pipeline {
         }
     }
 
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                script {
+                    // Iniciar sesión en Docker Hub
+                    sh "docker login -u \${DOCKERHUB_USERNAME}"
+
+                    // Etiquetar la imagen con el nombre de usuario/organización en Docker Hub
+                    sh "docker tag \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG} \${DOCKERHUB_USERNAME}/\${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
+
+                    // Cargar (push) la imagen a Docker Hub
+                    sh "docker push \${DOCKERHUB_USERNAME}/\${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
+                }
+            }
+        }
+    }
+
+    
     post {
         success {
             echo 'Imagen Docker construida, contenedor en ejecución y prueba de acceso a la página web exitosa.'
