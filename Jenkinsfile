@@ -34,7 +34,13 @@ pipeline {
             }
         }
 
-        
+    stage('Pruebas de contenedor') {
+            steps {
+                script {
+                    sh "curl -I http://192.168.56.10:9090/index.html"
+                }
+            }
+        }    
     
         stage('Pushear a Dockerhub') {
             steps {
@@ -47,13 +53,7 @@ pipeline {
                 }
             }
         }
-stage('Pruebas de contenedor') {
-            steps {
-                script {
-                    sh "curl -I http://192.168.56.10:9090/index.html"
-                }
-            }
-        }
+
     }
 
     post ('Resultado'){
