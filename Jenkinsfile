@@ -24,17 +24,17 @@ pipeline {
             }
         }
 
-       
-
-        stage('Pruebas de contenedor') {
+        stage('Ejecución del contenedor') {
             steps {
                 script {
-
-                    sh "cat /var/www/html/index.html"
-                    sh "curl -I http://192.168.56.10:9090/index.html"
+                    sh 'docker ps -f name=tpn7 -q | xargs --no-run-if-empty docker container stop'
+                    sh 'docker container ls -a -fname=tpn7 -q | xargs -r docker container rm'
+                    sh "docker run -d -p 9090:80 --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
                 }
             }
         }
+
+        
     
         stage('Pushear a Dockerhub') {
             steps {
@@ -47,12 +47,12 @@ pipeline {
                 }
             }
         }
- stage('Ejecución del contenedor') {
+stage('Pruebas de contenedor') {
             steps {
                 script {
-                    sh 'docker ps -f name=tpn7 -q | xargs --no-run-if-empty docker container stop'
-                    sh 'docker container ls -a -fname=tpn7 -q | xargs -r docker container rm'
-                    sh "docker run -d -p 9090:80 --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
+
+                    sh "cat /var/www/html/index.html"
+                    sh "curl -I http://192.168.56.10:9090/index.html"
                 }
             }
         }
