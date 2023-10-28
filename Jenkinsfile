@@ -29,7 +29,6 @@ pipeline {
                 script {
                     sh 'docker ps -f name=tpn7 -q | xargs --no-run-if-empty docker container stop'
                     sh 'docker container ls -a -fname=tpn7 -q | xargs -r docker container rm'
-                    sh "docker remove tpn7"
                     sh "docker run -d -p 9090:80 --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
                 }
             }
