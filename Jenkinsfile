@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'tpn7'
-        DOCKER_IMAGE_TAG = 'ver1.2'
+        DOCKER_IMAGE_TAG = 'ver1.2' // cambiar entre prueba y prueba para que no haya conflicto al subirlo a Dockerhub
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         
     }
@@ -27,7 +27,8 @@ pipeline {
         stage('Ejecución del contenedor') {
             steps {
                 script {
-                    sh "docker stop tpn7"
+                    sh 'docker ps -f name=tpn7 -q | xargs --no-run-if-empty docker container stop'
+                    sh 'docker container ls -a -fname=tpn7 -q | xargs -r docker container rm'
                     sh "docker remove tpn7"
                     sh "docker run -d -p 9090:80 --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
                 }
