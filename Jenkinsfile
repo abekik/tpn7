@@ -28,6 +28,7 @@ pipeline {
             steps {
                 script {
                     sh "docker stop tpn7"
+                    sh "docker remove tpn7"
                     sh "docker run -d -p 9090:80 --name tpn7 \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}"
                 }
             }
