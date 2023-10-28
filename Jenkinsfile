@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'tpn7'
-        DOCKER_IMAGE_TAG = 'ver1.8' // cambiar entre prueba y prueba para que no haya conflicto al subirlo a Dockerhub
+        DOCKER_IMAGE_TAG = 'ver1.9' // cambiar entre prueba y prueba para que no haya conflicto al subirlo a Dockerhub
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         
     }
@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
 
-                    sh "cat /var/www/html/test.html"
+                    sh "cat /var/www/html/index.html"
                     sh "curl -I http://192.168.56.10:9090/index.html"
                 }
             }
