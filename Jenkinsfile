@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'tpn7'
-        DOCKER_IMAGE_TAG = 'ver1.3' // cambiar entre prueba y prueba para que no haya conflicto al subirlo a Dockerhub
+        DOCKER_IMAGE_TAG = 'ver1.4' // cambiar entre prueba y prueba para que no haya conflicto al subirlo a Dockerhub
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         
     }
@@ -58,7 +58,7 @@ pipeline {
 
     }
 
-    post {
+    post ('Resultado'){
         success {
             echo 'Imagen Docker construida, contenedor en ejecución y prueba de acceso a la página web exitosa.'
         }
