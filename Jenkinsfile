@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'tpn7'
-        DOCKER_IMAGE_TAG = 'ver1.1'
+        DOCKER_IMAGE_TAG = 'ver1.2'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         
     }
