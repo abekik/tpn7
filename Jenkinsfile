@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
 
-                    sh "cat /var/www/html/index.html"
+                    sh "cat /var/www/html/test.html"
                     sh "curl -I http://192.168.56.10:9090/index.html"
                 }
             }
